@@ -8,7 +8,7 @@ MAINTAINER Thomas Strohmeier
 
 RUN apt-get update \
 	&& apt-get install -y autoconf automake libtool python3-dev \
-	&& apt-get clean
+	&& apt-get clean \
 	&& git clone https://github.com/duo-labs/cloudmapper.git 
 
 WORKDIR cloudmapper/
