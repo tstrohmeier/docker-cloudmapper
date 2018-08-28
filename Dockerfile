@@ -2,7 +2,7 @@
 # Dockerfile for cloudmapper
 #
 
-FROM tstrohmeier/awscli:latest as builder
+FROM tstrohmeier/awscli:latest
 
 MAINTAINER Thomas Strohmeier
 
@@ -13,12 +13,13 @@ RUN apt-get update \
 
 WORKDIR cloudmapper/
 
-RUN	 python3 -m venv ./venv  \
-	&& . venv/bin/activate  \
-	&& pip3 install -r requirements.txt 
+COPY config.json config.json
+COPY credentials  ~/.aws/credentials 
 
-COPY config.json cloudmapper/config.json	
+RUN pip3 install -r requirements.txt	\	
+	&& python3 cloudmapper.py collect --config config.json \
+	&& python3 cloudmapper.py prepare --config config.json
 
-RUN	 python3 cloudmapper.py prepare --config config.json
+ENTRYPOINT ["python", "cloudmapper.py", "webserver", "--public"]	
 
-ENTRYPOINT ["python", "cloudmapper.py", "webserver"]	
+EXPOSE 8000
