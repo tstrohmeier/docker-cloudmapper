@@ -1,13 +1,11 @@
 # docker-cloudmapper
 Docker Image with duo-labs/cloudmapper installed to visualize AWS Infrastructure
 
-@Dockerhub: https://hub.docker.com/r/tstrohmeier/awscli/
-
 ## 1. Config
 
 1. Create a user with the privileges you find here: https://github.com/duo-labs/cloudmapper#aws-privileges-required
-2. Add the credentials to the credentials in this folder
-3. Add your account id to config.json
+2. Add the credentials to the `credentials`file in this folder
+3. Add your account id to `config.json`
 
 ## 2. Build
 
