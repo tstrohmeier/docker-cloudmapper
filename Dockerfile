@@ -14,7 +14,7 @@ RUN apt-get update \
 
 WORKDIR cloudmapper/
 
-COPY credentials  ~/.aws/credentials 
+COPY credentials  /root/.aws/credentials 
 COPY config.json config.json
 
 RUN python3 cloudmapper.py collect --config config.json
